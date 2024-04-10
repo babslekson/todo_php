@@ -30,8 +30,15 @@ pipeline {
 		 }	
 
 	     }	
-
-            stage ("push image to Docker hub") {
+        stage('Install Docker') {
+            steps {
+                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                sh 'sh get-docker.sh'
+                sh 'sudo usermod -aG docker jenkins' // Add Jenkins user to docker group
+                sh 'sudo systemctl enable docker' // Enable Docker to start on boot
+            }
+        }
+        stage ("push image to Docker hub") {
 			steps {
 			   script {
 				    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
