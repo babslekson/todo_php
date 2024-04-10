@@ -24,7 +24,7 @@ pipeline {
 	    stage ("Building Docker image") {
 		steps {
 			script	{
-				sh 'docker build -t babslekson/php_todo:${BRANCH_NAME}-${BUILD_NUMBER} .'
+				sh ' sudo docker build -t babslekson/php_todo:${BRANCH_NAME}-${BUILD_NUMBER} .'
 
 			} 
 		 }	
