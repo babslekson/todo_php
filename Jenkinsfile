@@ -21,6 +21,14 @@ pipeline {
 			   git branch: 'main', credentialsId: 'Github-id' , url:'https://github.com/babslekson/todo_php.git'
 			   }
 			}
+		stage('Install Docker') {
+            steps {
+                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                sh 'sh get-docker.sh'
+                sh 'sudo usermod -aG docker jenkins' // Add Jenkins user to docker group
+                sh 'sudo systemctl enable docker' // Enable Docker to start on boot
+            }
+        }
 	    stage ("Building Docker image") {
 		steps {
 			script	{
@@ -30,14 +38,7 @@ pipeline {
 		 }	
 
 	     }	
-        stage('Install Docker') {
-            steps {
-                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-                sh 'sh get-docker.sh'
-                sh 'sudo usermod -aG docker jenkins' // Add Jenkins user to docker group
-                sh 'sudo systemctl enable docker' // Enable Docker to start on boot
-            }
-        }
+        
         stage ("push image to Docker hub") {
 			steps {
 			   script {
