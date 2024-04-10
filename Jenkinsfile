@@ -18,7 +18,7 @@ pipeline {
 
 	    stage("checkout git") {
 			steps {
-			   git branch: 'main', url:'https://github.com/babslekson/php-todo.git'
+			   git branch: 'main', credentialsId: 'Github-access' , url:'https://github.com/babslekson/php-todo.git'
 			   }
 			}
 	    stage ("Building Docker image") {
