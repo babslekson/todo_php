@@ -25,8 +25,7 @@ pipeline {
             steps {
                 sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
                 sh 'sh get-docker.sh'
-                sh 'sudo usermod -aG docker jenkins' // Add Jenkins user to docker group
-                sh 'sudo systemctl enable docker' // Enable Docker to start on boot
+                
             }
         }
 	    stage ("Building Docker image") {
