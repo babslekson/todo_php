@@ -21,13 +21,6 @@ pipeline {
 			   git branch: 'main', credentialsId: 'Github-id' , url:'https://github.com/babslekson/todo_php.git'
 			   }
 			}
-		stage('Install Docker') {
-            steps {
-                sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
-                sh 'sh get-docker.sh'
-                
-            }
-        }
 	    stage ("Building Docker image") {
 		steps {
 			script	{
