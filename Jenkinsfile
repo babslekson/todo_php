@@ -90,7 +90,7 @@ pipeline {
     steps {
         build job: 'ansible-config-mgt', parameters: [
             [$class: 'StringParameterValue', name: 'env', value: 'dev'],
-            [$class: 'GitRevisionParameterValue', name: 'branch', value: 'feature/jenkinspipeline-stages']
+            [$class: 'StringParameterValue', name: 'branch', value: 'feature/jenkinspipeline-stages']
         ], propagate: false, wait: true
     }
 }
